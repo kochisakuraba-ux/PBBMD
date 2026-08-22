@@ -323,12 +323,64 @@ class TitanBot extends Client {
   }
 
   async registerCommands() {
-    try {
-      await registerSlashCommands(this, { clientId: this.config.bot.clientId });
-    } catch (error) {
-      logger.error('Error registering commands:', error);
+  try {
+    const testGuildId =
+      process.env.TEST_GUILD_ID ||
+      this.config.commands?.testGuildId;
+
+    if (testGuildId) {
+      startupLog(
+        `Registering slash commands to test guild ${testGuildId}...`
+      );
+
+      const commands = Array.from(
+        this.commands.values()
+      )
+        .filter(
+          command =>
+            command.data &&
+            typeof command.data.toJSON === 'function'
+        )
+        .map(
+          command =>
+            command.data.toJSON()
+        );
+
+      await this.rest.put(
+        `/applications/${this.config.bot.clientId}/guilds/${testGuildId}/commands`,
+        {
+          body: commands
+        }
+      );
+
+      startupLog(
+        `✅ Registered ${commands.length} slash commands to test guild ${testGuildId}`
+      );
+
+      return;
     }
+
+    startupLog(
+      'No TEST_GUILD_ID configured. Registering slash commands globally...'
+    );
+
+    await registerSlashCommands(
+      this,
+      {
+        clientId:
+          this.config.bot.clientId
+      }
+    );
+
+  } catch (error) {
+
+    logger.error(
+      'Error registering commands:',
+      error
+    );
+
   }
+}
 
   async shutdown(reason = 'UNKNOWN') {
     shutdownLog(`Bot is shutting down (${reason})...`);
