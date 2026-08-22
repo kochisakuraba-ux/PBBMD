@@ -397,3 +397,175 @@ async function handleStatus(interaction) {
         return InteractionHelper.safeEditReply(interaction, { embeds: [embed], flags: ["Ephemeral"] });
     }
 }
+export async function openApplicationModal(
+    interaction,
+    roleId
+) {
+
+    const applicationRoles =
+        await getApplicationRoles(
+            interaction.client,
+            interaction.guild.id
+        );
+
+    const applicationRole =
+        applicationRoles.find(
+            role => role.roleId === roleId
+        );
+
+    if (!applicationRole) {
+
+        return await replyUserError(
+            interaction,
+            {
+                type:
+                    ErrorTypes.CONFIGURATION,
+
+                message:
+                    'Application configuration not found.'
+            }
+        );
+
+    }
+
+    const role =
+        interaction.guild.roles.cache.get(
+            roleId
+        );
+
+    if (!role) {
+
+        return await replyUserError(
+            interaction,
+            {
+                type:
+                    ErrorTypes.USER_INPUT,
+
+                message:
+                    'The application role no longer exists.'
+            }
+        );
+
+    }
+
+    const userApps =
+        await getUserApplications(
+            interaction.client,
+            interaction.guild.id,
+            interaction.user.id
+        );
+
+    const pendingApp =
+        userApps.find(
+            app =>
+                app.status === 'pending'
+        );
+
+    if (pendingApp) {
+
+        return await replyUserError(
+            interaction,
+            {
+                type:
+                    ErrorTypes.UNKNOWN,
+
+                message:
+                    'You already have a pending application.'
+            }
+        );
+
+    }
+
+    const settings =
+        await getApplicationSettings(
+            interaction.client,
+            interaction.guild.id
+        );
+
+    let questions =
+        settings.questions?.length
+            ? settings.questions
+            : getDefaultApplicationQuestions();
+
+    const roleSettings =
+        await getApplicationRoleSettings(
+            interaction.client,
+            interaction.guild.id,
+            roleId
+        );
+
+    if (
+        roleSettings.questions &&
+        roleSettings.questions.length > 0
+    ) {
+
+        questions =
+            roleSettings.questions;
+
+    }
+
+    const modal =
+        new ModalBuilder()
+
+            .setCustomId(
+                `app_modal_${roleId}`
+            )
+
+            .setTitle(
+                `Application for ${applicationRole.name}`
+            );
+
+    questions
+        .slice(0, 5)
+        .forEach(
+            (question, index) => {
+
+                const input =
+                    new TextInputBuilder()
+
+                        .setCustomId(
+                            `q${index}`
+                        )
+
+                        .setLabel(
+
+                            question.length > 45
+
+                                ?
+
+                            `${question.substring(
+                                0,
+                                42
+                            )}...`
+
+                                :
+
+                            question
+
+                        )
+
+                        .setStyle(
+                            TextInputStyle.Paragraph
+                        )
+
+                        .setRequired(true)
+
+                        .setMaxLength(1000);
+
+                modal.addComponents(
+
+                    new ActionRowBuilder()
+                        .addComponents(
+                            input
+                        )
+
+                );
+
+            }
+        );
+
+    return interaction.showModal(
+        modal
+    );
+
+}
