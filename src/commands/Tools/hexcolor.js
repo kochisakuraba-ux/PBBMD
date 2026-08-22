@@ -97,7 +97,7 @@ h = s = 0;
 function getColorName(hex) {
     const colors = {
         '#FF0000': 'Red',
-        '#00FF00': 'Green',
+        '#2748ff': 'Green',
         '#0000FF': 'Blue',
         '#FFFF00': 'Yellow',
         '#FF00FF': 'Magenta',
