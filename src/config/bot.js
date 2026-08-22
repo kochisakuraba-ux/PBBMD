@@ -109,7 +109,7 @@ export const botConfig = {
 
       // Discord-style palette shortcuts.
       blurple: "#5865F2",
-      green: "#57F287",
+      green: "#4878fc",
       yellow: "#FEE75C",
       fuchsia: "#EB459E",
       red: "#ED4245",
