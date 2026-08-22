@@ -13,25 +13,23 @@ import {
     ErrorTypes
 } from '../../utils/errorHandler.js';
 
-import { getApplicationSettings } from '../../utils/database.js';
-
 export default {
 
     slashOnly: true,
 
     data: new SlashCommandBuilder()
 
-        .setName('application-panel')
+        .setName('setupform')
 
         .setDescription(
-            'Create the staff application panel.'
+            'Create the staff application form.'
         )
 
         .addChannelOption(option =>
             option
                 .setName('channel')
                 .setDescription(
-                    'Channel where the panel will be posted.'
+                    'Channel where the application form will be posted.'
                 )
                 .setRequired(true)
         )
@@ -43,6 +41,7 @@ export default {
     category: 'Community',
 
     execute: withErrorHandling(
+
         async interaction => {
 
             const channel =
@@ -63,27 +62,6 @@ export default {
 
                         message:
                             'Please select a text channel.'
-                    }
-                );
-
-            }
-
-            const settings =
-                await getApplicationSettings(
-                    interaction.client,
-                    interaction.guild.id
-                );
-
-            if (!settings.enabled) {
-
-                return replyUserError(
-                    interaction,
-                    {
-                        type:
-                            ErrorTypes.CONFIGURATION,
-
-                        message:
-                            'Applications are currently disabled.'
                     }
                 );
 
@@ -119,6 +97,7 @@ export default {
                             '',
                             '**Application Status:** 🟢 OPEN'
                         ].join('\n')
+
                     )
 
                     .setFooter({
@@ -127,6 +106,7 @@ export default {
                     })
 
                     .setTimestamp();
+
 
             const row =
                 new ActionRowBuilder()
@@ -152,6 +132,7 @@ export default {
 
                     );
 
+
             await channel.send({
 
                 embeds: [
@@ -164,10 +145,11 @@ export default {
 
             });
 
+
             return interaction.reply({
 
                 content:
-                    `✅ Application panel created in ${channel}.`,
+                    `✅ Application form created in ${channel}.`,
 
                 ephemeral: true
 
@@ -176,9 +158,12 @@ export default {
         },
 
         {
-            type: 'command',
+            type:
+                'command',
+
             commandName:
-                'application-panel'
+                'setupform'
+
         }
 
     )
