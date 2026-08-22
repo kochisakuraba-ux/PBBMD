@@ -117,8 +117,8 @@ export function createEmbed({
   color = 'primary',
   fields = [],
   author = null,
-  footer = null,
-  thumbnail = null,
+  footer = false,
+  thumbnail = false,
   image = null,
   timestamp = false,
   url = null
