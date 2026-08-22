@@ -350,7 +350,7 @@ function normalizeWelcomeConfig(raw = {}) {
         title: "🎉 Welcome!",
         description: "Welcome {user} to {server}!",
         color: getColor("success"),
-        thumbnail: true,
+        thumbnail: false,
         footer: "Welcome to {server}!"
     };
 
