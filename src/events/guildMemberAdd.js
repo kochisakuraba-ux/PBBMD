@@ -54,7 +54,7 @@ export default {
                 } else {
                     const embed = new EmbedBuilder()
                         .setColor('#374af5')
-                        .setTitle(embedTitle)
+                        .setTitle('Welcome To PBBMD!')
                         .setDescription(welcomeMessage)
                         .setTimestamp()
                         .setFooter({ text: embedFooter });
