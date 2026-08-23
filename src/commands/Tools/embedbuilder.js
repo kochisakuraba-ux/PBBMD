@@ -28,7 +28,7 @@ const IDLE_TIMEOUT = 900_000;
 
 const COLOR_PRESETS = [
     { label: 'Primary (Blue)',        value: '#336699', emoji: '' },
-    { label: 'Success (Green)',       value: '#57F287', emoji: '' },
+    { label: 'Success (Green)',       value: '#336699', emoji: '' },
     { label: 'Error (Red)',           value: '#ED4245', emoji: '' },
     { label: 'Warning (Yellow)',      value: '#FEE75C', emoji: '' },
     { label: 'Info (Bright Blue)',    value: '#3498DB', emoji: '' },

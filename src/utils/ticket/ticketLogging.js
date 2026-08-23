@@ -104,8 +104,8 @@ const TICKET_EVENT_STYLES = {
   claim: { color: 0x5865F2, title: 'Ticket Claimed' },
   unclaim: { color: 0xFAA61A, title: 'Ticket Unclaimed' },
   priority: { color: 0x9b59b6, title: 'Priority Updated' },
-  transcript: { color: 0x57F287, title: 'Transcript Generated' },
-  feedback: { color: 0x57F287, title: 'Feedback Received' },
+  transcript: { color: 0x336699, title: 'Transcript Generated' },
+  feedback: { color: 0x336699, title: 'Feedback Received' },
 };
 
 async function createTicketLogEmbed(guild, event) {

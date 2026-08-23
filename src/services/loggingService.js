@@ -91,14 +91,14 @@ const EVENT_COLORS = {
   'reactionrole.create': 0x3498db,
   'reactionrole.delete': 0x8b0000,
   'reactionrole.update': 0xFFA500,
-  'giveaway.create': 0x57F287,
+  'giveaway.create': 0x336699,
   'giveaway.winner': 0xFEE75C,
   'giveaway.reroll': 0x3498DB,
   'giveaway.delete': 0xE74C3C,
   'counter.update': 0x0099ff,
   'counter.config': 0x5865F2,
   'application.submit': 0x5865F2,
-  'application.review': 0x57F287,
+  'application.review': 0x336699,
   'report.file': 0xED4245,
 };
 
