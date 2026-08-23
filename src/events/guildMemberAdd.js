@@ -31,10 +31,10 @@ export default {
             if (permissions?.has([PermissionFlagsBits.ViewChannel, PermissionFlagsBits.SendMessages])) {
                 const formatData = { user, guild, member };
                 const welcomeMessage = formatWelcomeMessage(
-                    welcomeConfig.welcomeMessage || welcomeConfig.welcomeEmbed?.description || botConfig.welcome?.defaultWelcomeMessage || 'Welcome {user} to {server}!',
+                    welcomeConfig.welcomeMessage || welcomeConfig.welcomeEmbed?.description || botConfig.welcome?.defaultWelcomeMessage || '👋 Welcome {user} to PBBMD! 🎊',
                     formatData
                 );
-
+                
                 const messageContent = welcomeConfig.welcomePing ? user.toString() : null;
 
                 const embedTitle = formatWelcomeMessage(
