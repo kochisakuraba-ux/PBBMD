@@ -38,7 +38,7 @@ export default {
                 const messageContent = welcomeConfig.welcomePing ? user.toString() : null;
 
                 const embedTitle = formatWelcomeMessage(
-                    welcomeConfig.welcomeEmbed?.title || '🎉 Welcome!',
+                    welcomeConfig.welcomeEmbed?.title || '🎉 Welcome To PBBMD!',
                     formatData
                 );
                 const embedFooter = welcomeConfig.welcomeEmbed?.footer
@@ -53,7 +53,7 @@ export default {
                     });
                 } else {
                     const embed = new EmbedBuilder()
-                        .setColor('#0000FF')
+                        .setColor('#374af5')
                         .setTitle(embedTitle)
                         .setDescription(welcomeMessage)
                         .setTimestamp()
