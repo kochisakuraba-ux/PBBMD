@@ -347,7 +347,7 @@ function normalizeWelcomeConfig(raw = {}) {
     const leaveMessage = base.leaveMessage ?? "{user.tag} has left the server.";
 
     const welcomeEmbed = base.welcomeEmbed ?? {
-        title: "🎉 Welcome!",
+        title: "🎉 Welcome To PBBMD",
         description: "Welcome {user} to {server}!",
         color: getColor("success"),
         thumbnail: false,
