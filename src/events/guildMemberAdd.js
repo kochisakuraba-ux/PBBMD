@@ -53,7 +53,7 @@ export default {
                     });
                 } else {
                     const embed = new EmbedBuilder()
-                        .setColor('#374af5')
+                        .setColor('#369EE3')
                         .setTitle('Welcome To PBBMD!')
                         .setDescription(welcomeMessage)
                         .setTimestamp()
