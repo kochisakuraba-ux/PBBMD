@@ -83,7 +83,7 @@ const EVENT_COLORS = {
   'role.create': 0x2ecc71,
   'role.delete': 0xe74c3c,
   'role.update': 0x3498db,
-  'member.join': 0x2ecc71,
+  'member.join': 0x337dec,
   'member.leave': 0xe74c3c,
   'member.namechange': 0x3498db,
   'reactionrole.add': 0x2ecc71,

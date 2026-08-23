@@ -82,7 +82,7 @@ export default {
           value: `${progressBar} ${progress}%`
         }
       )
-      .setColor('#2ecc71')
+      .setColor('#337dec')
       .setTimestamp();
 
     await InteractionHelper.safeEditReply(interaction, { embeds: [embed] });
